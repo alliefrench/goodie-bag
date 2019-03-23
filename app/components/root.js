@@ -1,16 +1,27 @@
 import React from 'react';
 import AllCandies from './allCandies';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const Root = () => {
   return (
-    <div>
-      <nav>Goodie Bag</nav>
-      <main>
-        <h1>Welcome to the Goodie Bag!</h1>
-        <p>What a nice home page for your goodies!</p>
-        <AllCandies />
-      </main>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <Link to="/" className="links">
+            Home
+          </Link>
+          <hr />
+          <Link to="/candies" className="links">
+            Goodie Bag
+          </Link>
+        </nav>
+        <main>
+          <h1>Welcome to the Goodie Bag!</h1>
+          <p>What a nice home page for your goodies!</p>
+          <Route path="/candies" component={AllCandies} />
+        </main>
+      </div>
+    </Router>
   );
 };
 
