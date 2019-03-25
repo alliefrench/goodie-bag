@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { getCandies } from '../reducers/index';
 import SingleCandy from './singleCandy';
 
@@ -13,7 +14,24 @@ class DisconnectedAllCandies extends React.Component {
   }
 
   render() {
-    return this.props.candies.map(candy => <SingleCandy candy={candy} />);
+    return (
+      <Router>
+        <div>
+          <ul>
+            {this.props.candies.map(candy => (
+              <li key={candy.id}>
+                <Link to={`/candies/${candy.id}`}>{candy.name}</Link>
+                <Route
+                  path={`/candies/${candy.id}`}
+                  component={SingleCandy}
+                  candy={{ candy }}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Router>
+    );
   }
 }
 

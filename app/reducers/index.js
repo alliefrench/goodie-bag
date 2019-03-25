@@ -1,12 +1,14 @@
 import axios from 'axios';
 
-//action constant
+//action constants
 const SET_CANDIES = 'SET_CANDIES';
+const SET_CANDY = 'SET_CANDY';
 
-//action creator
+//action creators
 const setCandies = candies => ({ type: SET_CANDIES, candies });
+const setCandy = candy => ({ type: SET_CANDY, candy });
 
-//THUNK
+//THUNKS
 export const getCandies = () => {
   return async dispatch => {
     try {
@@ -18,12 +20,25 @@ export const getCandies = () => {
   };
 };
 
-const initialState = { candies: [] };
+export const getCandy = candyId => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.get(`/api/candies/${candyId}`);
+      dispatch(setCandy(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+const initialState = { candies: [], selectedCandy: {} };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CANDIES:
       return { candies: action.candies };
+    case SET_CANDY:
+      return { ...state, selectedCandy: action.candy };
     default:
       return state;
   }

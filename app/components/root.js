@@ -18,7 +18,7 @@ const Root = () => {
         <main>
           <h1>Welcome to the Goodie Bag!</h1>
           <p>What a nice home page for your goodies!</p>
-          <Route path="/candies" component={AllCandies} />
+          <Route exact path="/candies" component={AllCandies} />
         </main>
       </div>
     </Router>
