@@ -21,10 +21,16 @@ class DisconnectedAllCandies extends React.Component {
             {this.props.candies.map(candy => (
               <li key={candy.id}>
                 <Link to={`/candies/${candy.id}`}>{candy.name}</Link>
-                <Route
+                {/* <Route
+                  exact
                   path={`/candies/${candy.id}`}
                   component={SingleCandy}
-                  candy={{ candy }}
+                  id={candy.id}
+                /> */}
+                <Route
+                  exact
+                  path={`/candies/${candy.id}`}
+                  render={() => <SingleCandy id={candy.id} />}
                 />
               </li>
             ))}

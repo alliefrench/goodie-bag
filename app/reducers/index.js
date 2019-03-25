@@ -38,7 +38,7 @@ const rootReducer = (state = initialState, action) => {
     case SET_CANDIES:
       return { candies: action.candies };
     case SET_CANDY:
-      return { ...state, selectedCandy: action.candy };
+      return { ...state, selectedCandy: action.candy, loading: false };
     default:
       return state;
   }
