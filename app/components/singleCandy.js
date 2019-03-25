@@ -14,9 +14,16 @@ class DisconnectedSingleCandy extends React.Component {
   }
   render() {
     console.log(this.props);
-    if (this.props.loading) return <div>Loading...</div>;
-    // return <div>BANANAS</div>;
-    return <div>{this.props.selectedCandy.name}</div>;
+    if (this.props.loading) {
+      return <div>Loading...</div>;
+    }
+    return (
+      <div>
+        <h4>{this.props.selectedCandy.name}</h4>
+        <img src={`${this.props.selectedCandy.imageUrl}`} />
+        <h6>{this.props.selectedCandy.description}</h6>
+      </div>
+    );
   }
 }
 

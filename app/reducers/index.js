@@ -31,12 +31,12 @@ export const getCandy = candyId => {
   };
 };
 
-const initialState = { candies: [], selectedCandy: {} };
+const initialState = { candies: [], selectedCandy: {}, loading: true };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CANDIES:
-      return { candies: action.candies };
+      return { ...state, candies: action.candies };
     case SET_CANDY:
       return { ...state, selectedCandy: action.candy, loading: false };
     default:
